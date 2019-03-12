@@ -1,0 +1,16 @@
+┠━━━ CollectData.py
+┃		┠──── psutil	(py)
+┃		┗──── texttable	(py)
+┃
+┠━━━ MailSender.py
+┃
+┃
+┃
+┃
+┃
+┃
+┃
+┃
+┃
+┃
+┃
