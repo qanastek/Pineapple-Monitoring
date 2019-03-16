@@ -21,10 +21,6 @@ import sys
 # OS name (Linux/Mac or Windows)
 os = os.uname()[0]
 
-def makeRestResult(cpuUsage,diskUsage,memoryUsage,swapUsage,usersCounter,processCounter):
-
-	return json.dumps({ "cpuUsage" : cpuUsage, "diskUsage" : diskUsage, "memoryUsage" : memoryUsage, "swapUsage" : swapUsage, "usersCounter" : usersCounter, "processCounter" : processCounter })
-
 def optionDisplay(cpuUsage,diskUsage,memoryUsage,swapUsage,usersCounter,processCounter):
 
 	if len(sys.argv) == 2 and sys.argv[1] == "--display":
@@ -48,31 +44,48 @@ def optionDisplay(cpuUsage,diskUsage,memoryUsage,swapUsage,usersCounter,processC
 
 		sys.exit(0)
 
-if os == "Linux":
+def CollectData():
 
-	# Utilisation processeur
-	# Interval => Précision après la virgule
-	cpuUsage = psutil.cpu_percent(interval=1)
+	if os == "Linux":
 
-	# Nombre de coeurs physique
-	coreCounter = psutil.cpu_count(logical=False)
+		# Utilisation processeur
+		# Interval => Précision après la virgule
+		cpuUsage = psutil.cpu_percent(interval=1)
 
-	# Nombre de coeurs logiques
-	bashCommand  = "cat /proc/cpuinfo | awk '/^processor/{print $3}' | wc -l"
-	treadsCounter = subprocess.check_output(['bash','-c', bashCommand])
+		# Nombre de coeurs physique
+		coreCounter = psutil.cpu_count(logical=False)
 
-	diskUsage = psutil.disk_usage('/').percent
+		# Nombre de coeurs logiques
+		bashCommand  = "cat /proc/cpuinfo | awk '/^processor/{print $3}' | wc -l"
+		treadsCounter = subprocess.check_output(['bash','-c', bashCommand])
 
-	memoryUsage = psutil.virtual_memory().percent
+		diskUsage = psutil.disk_usage('/').percent
 
-	swapUsage = psutil.swap_memory().percent
+		memoryUsage = psutil.virtual_memory().percent
 
-	usersCounter = len(psutil.users())
+		swapUsage = psutil.swap_memory().percent
 
-	processCounter = len(psutil.pids())
+		usersCounter = len(psutil.users())
 
-	# If --display show a table
-	optionDisplay(cpuUsage,diskUsage,memoryUsage,swapUsage,usersCounter,processCounter)
+		processCounter = len(psutil.pids())
 
-	# Else send a JSON response
-	makeRestResult(cpuUsage,diskUsage,memoryUsage,swapUsage,usersCounter,processCounter)
+		# If --display show a table
+		optionDisplay(cpuUsage,diskUsage,memoryUsage,swapUsage,usersCounter,processCounter)
+
+		# data = ' { "cpuUsage" : ' + str(cpuUsage) + ', "memoryUsage" : ' + str(memoryUsage) + ', "swapUsage" : ' + str(swapUsage) + ', "usersCounter" : ' + str(usersCounter) + ', "processCounter" : ' + str(processCounter) + '}'
+
+		# Else send a JSON response
+		data = json.dumps(
+		{
+			"currentCpuLoad" : cpuUsage,
+			"currentDiskUsage" : diskUsage,
+			"currentMemLoad" : memoryUsage,
+			"currentSwapUsage" : swapUsage,
+			"currentConnectedUsers" : usersCounter,
+			"processCounter" : processCounter
+		}
+		, indent=4, sort_keys=True)
+
+		data = json.loads(data) # JSON HERE
+
+		return data

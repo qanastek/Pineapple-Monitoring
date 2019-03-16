@@ -1,7 +1,8 @@
 {
     "connectedUsersMax": 15, 
     "cpuLoadMax": 90, 
-    "diskUsageMax": 95, 
-    "memLoadMax": 90, 
-    "swapUsageMax": 95
+    "diskUsageMax": 1, 
+    "memLoadMax": 1, 
+    "swapUsageMax": 95,
+    "processCounter": 500
 }

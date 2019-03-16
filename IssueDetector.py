@@ -18,6 +18,9 @@ from MailSender import *
 # For getting ip address
 import socket
 
+# Date
+import datetime
+
 # --set
 SetSettings(sys.argv)
 
@@ -29,51 +32,23 @@ with open("settings.json", "r") as read_file:
 
     	data = json.load(read_file)
 
-# Valeurs max enregistrer dans le fichier config
-cpuLoadMax = data["cpuLoadMax"]
-diskUsageMax = data["diskUsageMax"]
-swapUsageMax = data["swapUsageMax"]
-memLoadMax = data["memLoadMax"]
-connectedUsersMax = data["connectedUsersMax"]
+def GetInfo(JsonIn):
 
-# Valeurs capter et reçu
-currentCpuLoad = 1
-currentDiskUsage = 73
-currentSwapUsage = 0.4
-currentMemLoad = 56.7
-currentConnectedUsers = 0
+	jsonOut = {
+		'currentCpuLoad': JsonIn['currentCpuLoad'],
+		'currentDiskUsage': JsonIn['currentDiskUsage'],
+		'currentSwapUsage' : JsonIn['currentSwapUsage'],
+		'currentMemLoad' : JsonIn['currentMemLoad'],
+		'currentConnectedUsers' : JsonIn['currentConnectedUsers'],
+		"processCounter" : JsonIn['processCounter']
+	}
 
-issueCounter = 0
-errors = []
-
-# CPU Load Check
-if currentCpuLoad >= cpuLoadMax :
-	issueCounter += 1
-	errors.append("cpu overload")
-
-# Disk Usage Check
-if currentDiskUsage >= diskUsageMax :
-	issueCounter += 1
-	errors.append("disk saturate")
-
-# Swap Usage Check
-if currentSwapUsage >= swapUsageMax :
-	issueCounter += 1
-	errors.append("swap saturate")
-
-# Memory Load Check
-if currentMemLoad >= memLoadMax :
-	issueCounter += 1
-	errors.append("memory saturate")
-
-# Check how much users was connected
-if currentConnectedUsers >= connectedUsersMax :
-	issueCounter += 1
-	errors.append("Too much users was connected")
+	return jsonOut
 
 def ErrorsToString(errors):
+
 	hostname = socket.gethostname()
-	string = "hostname : " + hostname + "\nLocal ip address : " + socket.gethostbyname(hostname) + " \n\n"
+	string = "Computer Hostname : " + hostname + "\nLocal ip address : " + socket.gethostbyname(hostname) + " \n\n"
 
 	string += "Errors : \n\n"
 
@@ -82,5 +57,43 @@ def ErrorsToString(errors):
 
 	return string
 
-if issueCounter > 0 :
-	SendEmail("A computer have issues", ErrorsToString(errors))
+def Program(JsonIn):
+
+	ComputerInfos = GetInfo(JsonIn)
+
+	issueCounter = 0
+	errors = []
+
+	# CPU Load Check
+	if ComputerInfos['currentCpuLoad'] >= data["cpuLoadMax"] :
+		issueCounter += 1
+		errors.append("cpu overload")
+
+	# Disk Usage Check
+	if ComputerInfos['currentDiskUsage'] >= data["diskUsageMax"] :
+		issueCounter += 1
+		errors.append("disk saturate")
+
+	# Swap Usage Check
+	if ComputerInfos['currentSwapUsage'] >= data["swapUsageMax"] :
+		issueCounter += 1
+		errors.append("swap saturate")
+
+	# Memory Load Check
+	if ComputerInfos['currentMemLoad'] >= data["memLoadMax"] :
+		issueCounter += 1
+		errors.append("memory saturate")
+
+	# Check how much users was connected
+	if ComputerInfos['currentConnectedUsers'] >= data["connectedUsersMax"] :
+		issueCounter += 1
+		errors.append("Too much users was connected")
+
+	if ComputerInfos['processCounter'] >= data["processCounter"] :
+		issueCounter += 1
+		errors.append("Too much process are running")
+
+	if issueCounter > 0 :
+		date = datetime.datetime.now()
+		dateFR = str(date.day) + "/" + str(date.month) + "/" + str(date.year) + " à " + str(date.hour) + "H" + str(date.minute)
+		SendEmail("A computer have issues", ErrorsToString(errors) + "\nDate : " + dateFR )

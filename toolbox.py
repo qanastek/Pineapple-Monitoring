@@ -14,7 +14,7 @@ def DisplaySettings(argv):
 	if len(argv) == 2 and argv[1] == "--param":
 
 		# JSON en lecture
-		with open("../settings.json", "r") as read_file:
+		with open("settings.json", "r") as read_file:
 
 			data = json.load(read_file)
 
@@ -38,11 +38,11 @@ def SetSettings(argv):
 	if len(argv) == 2 and argv[1] == "--set":
 
 		# Open the file in Read mode
-		bufferData = open("../settings.json", "r")
+		bufferData = open("settings.json", "r")
 		bufferisedData = json.load(bufferData)
 
 		# Open the file in Write mode
-		data = open("../settings.json", "w")
+		data = open("settings.json", "w")
 
 		# Nombre maximum d'utilisateur en ligne
 		champValidation = str(raw_input("Voulez vous modifié le nombre max d'utilisateur connecté ? "))
