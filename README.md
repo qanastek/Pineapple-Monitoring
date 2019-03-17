@@ -36,4 +36,8 @@ Université d'Avignon - CERI
     - [x] Traiter les données :
         - [x] Lancé le programme de détection de crise avec les données en paramètres
 - [ ] Communication (out)  - Client side
-    - [ ]  
+    - [x] Créer un programme qui gère tout coté client (Collecte, Empaquetage et Envoie)
+    - [ ] Automatisé avec CRON l'exécution de ce programe
+    - [ ] Un module qui récupère et sauvegarde les informations
+- [ ] Affichage & Alerte
+- [ ] Stockage & Collecte web
