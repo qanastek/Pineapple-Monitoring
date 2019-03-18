@@ -10,7 +10,7 @@ app = Flask(__name__)
 # request.get_json()
 
 @app.route('/', methods=['POST'])
-def hello():
+def home():
 	if request.method == 'POST':
 
 		# Json reçu par le client via une requête POST
@@ -27,7 +27,7 @@ def hello():
 
 @app.route("/voiture")
 def car():
-	return jsonify({"brand" : "renault"})
+	return "Je suis"
 
 if __name__ == '__main__':
 	app.run(debug=True)

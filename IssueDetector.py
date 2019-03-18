@@ -35,6 +35,7 @@ with open("settings.json", "r") as read_file:
 def GetInfo(JsonIn):
 
 	jsonOut = {
+		'mac' : JsonIn['mac'],
 		'currentCpuLoad': JsonIn['currentCpuLoad'],
 		'currentDiskUsage': JsonIn['currentDiskUsage'],
 		'currentSwapUsage' : JsonIn['currentSwapUsage'],
@@ -45,14 +46,15 @@ def GetInfo(JsonIn):
 
 	return jsonOut
 
-def ErrorsToString(errors):
+def ErrorsToString(errors, ComputerInfos):
 
 	hostname = socket.gethostname()
-	string = "Computer Hostname : " + hostname + "\nLocal ip address : " + socket.gethostbyname(hostname) + " \n\n"
+	string = "Computer Hostname : " + hostname + "\nLocal ip address : " + socket.gethostbyname(hostname) + "\nMAC : " + str(ComputerInfos['mac']) + " \n\n"
 
 	string += "Errors : \n\n"
 
 	for i in errors:
+
 		string += i + " \n"
 
 	return string
@@ -96,4 +98,5 @@ def Program(JsonIn):
 	if issueCounter > 0 :
 		date = datetime.datetime.now()
 		dateFR = str(date.day) + "/" + str(date.month) + "/" + str(date.year) + " à " + str(date.hour) + "H" + str(date.minute)
-		SendEmail("A computer have issues", ErrorsToString(errors) + "\nDate : " + dateFR )
+
+		SendEmail("A computer have some issues", ErrorsToString(errors, ComputerInfos) + "\nDate : " + dateFR )

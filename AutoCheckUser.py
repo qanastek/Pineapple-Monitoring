@@ -11,6 +11,6 @@ data = json.dumps(data, indent=4, sort_keys=True)
 
 Header = {'Content-type': 'application/json', 'Accept': 'text/plain'}
 
-resultPOST = requests.post(URL, data = data, headers = Header)
+resultPOST = requests.post(URL, data=data, headers=Header)
 
 print "---| POST Code : " + str(resultPOST.status_code) + " |---"

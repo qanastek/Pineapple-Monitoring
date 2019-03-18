@@ -18,10 +18,13 @@ import json
 
 import sys
 
+# Adresse MAC
+from uuid import getnode as get_mac
+
 # OS name (Linux/Mac or Windows)
 os = os.uname()[0]
 
-def optionDisplay(cpuUsage,diskUsage,memoryUsage,swapUsage,usersCounter,processCounter):
+def optionDisplay(cpuUsage,diskUsage,memoryUsage,swapUsage,usersCounter,processCounter,coreCounter,treadsCounter):
 
 	if len(sys.argv) == 2 and sys.argv[1] == "--display":
 
@@ -69,14 +72,15 @@ def CollectData():
 
 		processCounter = len(psutil.pids())
 
-		# If --display show a table
-		optionDisplay(cpuUsage,diskUsage,memoryUsage,swapUsage,usersCounter,processCounter)
+		macAdd = str(get_mac())
 
-		# data = ' { "cpuUsage" : ' + str(cpuUsage) + ', "memoryUsage" : ' + str(memoryUsage) + ', "swapUsage" : ' + str(swapUsage) + ', "usersCounter" : ' + str(usersCounter) + ', "processCounter" : ' + str(processCounter) + '}'
+		# If --display show a table
+		optionDisplay(cpuUsage,diskUsage,memoryUsage,swapUsage,usersCounter,processCounter,coreCounter,treadsCounter)
 
 		# Else send a JSON response
 		data = json.dumps(
 		{
+			"mac" : macAdd,
 			"currentCpuLoad" : cpuUsage,
 			"currentDiskUsage" : diskUsage,
 			"currentMemLoad" : memoryUsage,
@@ -89,3 +93,6 @@ def CollectData():
 		data = json.loads(data) # JSON HERE
 
 		return data
+
+if len(sys.argv) == 2 and sys.argv[1] == "--display":
+	CollectData()
