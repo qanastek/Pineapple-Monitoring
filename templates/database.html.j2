@@ -1,0 +1,68 @@
+{% extends "default.html.j2" %}
+
+{% block title %}
+  Database
+{% endblock %}
+
+{% block pageTitle %}
+  Database
+{% endblock %}
+
+{% block content %}
+    <!-- Content Row -->
+    <div class="row">
+
+      <div class="col-xl-12 col-md-12 mb-4">
+
+        <table class="table">
+
+          <thead>
+            <tr style="text-transform: uppercase;">
+              <th scope="col">MAC</th>
+              <th scope="col">Date</th>
+              <th scope="col">Cpu Load</th>
+
+              <th scope="col">Disk Usage</th>
+              <th scope="col">Swap Usage</th>
+              <th scope="col">Memory Usage</th>
+
+              <th scope="col">Connected Users</th>
+              <th scope="col">Process</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            {% for entries in DB %}
+            <tr>
+              <td>{{entries[0]}}</td>
+              <td>{{entries[1]}}</td>
+              <td>{{entries[2]}}</td>
+
+              <td>{{entries[3]}}</td>
+              <td>{{entries[4]}}</td>
+              <td>{{entries[5]}}</td>
+
+              <td>{{entries[6]}}</td>
+              <td>{{entries[7]}}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+
+        </table>
+
+      </div>
+
+    </div>
+
+{% endblock content %}
+
+{% block script %}
+
+  <!-- Page level plugins -->
+  <script src="{{ url_for('static', filename='vendor/chart.js/Chart.min.js') }}"></script>
+
+  <!-- Page level custom scripts -->
+  <script src="{{ url_for('static', filename='js/demo/chart-area-demo.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/demo/chart-pie-demo.js') }}"></script>
+
+{% endblock script %}

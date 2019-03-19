@@ -6,7 +6,7 @@ Auteurs :
 * Labrak Yanis
 * Vougeot Valentin
 
-IP : http://52.207.246.134/
+Commande : sudo /etc/init.d/apache2 stop
 
 Etablissement :
 

@@ -1,0 +1,126 @@
+<!-- Sidebar -->
+    <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+
+      <!-- Sidebar - Brand -->
+      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ url_for('index') }}">
+
+        <div class="sidebar-brand-icon rotate-n-15">
+          <img id="iconPineSidePanel" src="{{ url_for('static', filename='img/Icon_Pine_Apple.png') }}" style="width: 100%;">
+        </div>
+
+        <div class="sidebar-brand-text mx-3">Pineapple Monitoring</div>
+      </a>
+
+      <!-- Divider -->
+      <hr class="sidebar-divider my-0">
+
+      <!-- Nav Item - Dashboard -->
+      <li class="nav-item active">
+        <a class="nav-link" href="{{ url_for('index') }}">
+          <i class="fas fa-fw fa-tachometer-alt"></i>
+          <span>Dashboard</span></a>
+      </li>
+
+      <!-- Divider -->
+      <hr class="sidebar-divider">
+
+      <!-- Heading -->
+      <div class="sidebar-heading">
+        Générale
+      </div>
+
+      <!-- Nav Item - Pages Collapse Menu -->
+      <li class="nav-item">
+        <a class="nav-link" href="{{ url_for('vulnerabilites') }}">
+          <i class="fas fa-biohazard"></i>
+          <span>Vulnerabilités</span></a>
+      </li>
+
+      <!-- Nav Item - Charts -->
+      <li class="nav-item">
+        <a class="nav-link" href="{{ url_for('historique') }}">
+          <i class="fas fa-fw fa-chart-area"></i>
+          <span>Historique</span></a>
+      </li>
+
+      <!-- Nav Item - Tables -->
+      <li class="nav-item">
+        <a class="nav-link" href="{{ url_for('ordinateurs') }}">
+          <i class="fas fa-desktop"></i>
+          <span>Ordinateurs</span></a>
+      </li>
+
+      <!-- Divider -->
+      <hr class="sidebar-divider">
+
+      <!-- Heading -->
+      <div class="sidebar-heading">
+        Paramètres
+      </div>
+
+      <!-- Nav Item - Pages Collapse Menu -->
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#headingMail" aria-expanded="true" aria-controls="headingMail">
+          <i class="far fa-envelope"></i>
+          <span>E-Mails</span>
+        </a>
+        <div id="headingMail" class="collapse" aria-labelledby="headingMail" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header">E-Mails :</h6>
+
+            <a class="collapse-item" href="{{ url_for('config_smtp') }}">Serveur SMTP</a>
+            <a class="collapse-item" href="{{ url_for('config_mail_data') }}">Données comprises</a>
+            <a class="collapse-item" href="{{ url_for('config_mail_template') }}">Personnalisation du mail</a>
+            <a class="collapse-item" href="{{ url_for('config_mail_signature') }}">Signature</a>
+          </div>
+        </div>
+      </li>
+
+      <!-- Nav Item - Pages Collapse Menu -->
+      <li class="nav-item">
+
+        <a class="nav-link collapsed" href="{{ url_for('general') }}" data-toggle="collapse" data-target="#headingGeneral" aria-expanded="true" aria-controls="headingGeneral">
+          <i class="fas fa-fw fa-cog"></i>
+          <span>Généraux</span>
+        </a>
+
+        <div id="headingGeneral" class="collapse" aria-labelledby="headingGeneral" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header">Généraux :</h6>
+
+            <a class="collapse-item" href="{{ url_for('config_exportation') }}">Format d'exportation</a>
+            <a class="collapse-item" href="{{ url_for('config_theme_ui') }}">Thème</a>
+            <a class="collapse-item" href="{{ url_for('config_data') }}">Données</a>
+            <a class="collapse-item" href="{{ url_for('config_customizer') }}">Personnalisation</a>
+          </div>
+        </div>
+
+      </li>
+
+      <!-- Nav Item - Utilities Collapse Menu -->
+      <li class="nav-item">
+
+        <a class="nav-link collapsed" href="{{ url_for('alarmes') }}" data-toggle="collapse" data-target="#headingAlarms" aria-expanded="true" aria-controls="headingAlarms">
+          <i class="fas fa-exclamation-triangle"></i>
+          <span>Alarmes</span>
+        </a>
+
+        <div id="headingAlarms" class="collapse" aria-labelledby="headingAlarms" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header">Alarmes :</h6>
+
+            <a class="collapse-item" href="{{ url_for('config_alarm_maj') }}">Fréquence de MAJ</a>
+            <a class="collapse-item" href="{{ url_for('config_alarm_quotas') }}">Quotas déclancheurs</a>
+            <a class="collapse-item" href="{{ url_for('config_alarm_other') }}">Autre</a>
+          </div>
+        </div>
+
+      </li>
+
+      <!-- Sidebar Toggler (Sidebar) -->
+      <div class="text-center d-none d-md-inline">
+        <button class="rounded-circle border-0" id="sidebarToggle"></button>
+      </div>
+
+    </ul>
+    <!-- End of Sidebar -->
