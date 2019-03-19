@@ -6,6 +6,8 @@ Auteurs :
 * Labrak Yanis
 * Vougeot Valentin
 
+IP : http://52.207.246.134/
+
 Etablissement :
 
 Université d'Avignon - CERI
