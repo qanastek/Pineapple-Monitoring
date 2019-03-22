@@ -10,7 +10,7 @@ Commande : sudo /etc/init.d/apache2 stop
 
 Topologie :
 
-![Diagramme](./mermaid-diagram.svg)
+[Diagramme](./mermaid-diagram.svg)
 
 Etablissement :
 
