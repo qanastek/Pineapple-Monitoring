@@ -8,6 +8,13 @@ Auteurs :
 
 Commande : sudo /etc/init.d/apache2 stop
 
+Topologie :
+
+```plantuml
+  Bob -> Alice : hello
+  Alice -> Bob : Go Away
+  ```
+
 Etablissement :
 
 Université d'Avignon - CERI
