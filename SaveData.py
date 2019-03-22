@@ -107,7 +107,7 @@ def SaveData(JsonIn):
 
 	conn.close()
 
-	showTable()
+	# showTable()
 
 # createTable()
 # addColumn()

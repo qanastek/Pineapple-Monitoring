@@ -32,7 +32,7 @@
           </thead>
 
           <tbody>
-            {% for entries in DB %}
+            {% for entries in DB | sort(reverse = True) %}
             <tr>
               <td>{{entries[0]}}</td>
               <td>{{entries[1]}}</td>

@@ -6,6 +6,7 @@
 from flask import Flask, jsonify, request, render_template, url_for
 from IssueDetector import *
 from SaveData import *
+from datetime import *
 
 # Lancement d'UTF-8
 reload(sys)  
@@ -13,9 +14,49 @@ sys.setdefaultencoding('utf8')
 
 app = Flask(__name__)
 
+def CalculDate(requete):
+
+	now = datetime.now()
+	old = datetime.strptime(requete[0][1], '%Y-%m-%d %H:%M:%S.%f')
+	dateEcart = now - old
+	dateEcart = dateEcart.seconds
+
+	ecart = {
+		"hours" : str(dateEcart / 3600),
+		"minutes" : str((dateEcart / 60) % 60),
+		"seconds" : str(dateEcart % 60)
+	}
+
+	return ecart['hours'] + " H " + ecart['minutes'] + " m " + ecart['seconds'] + " s"
+
 @app.route('/', methods=['GET'])
 def index():
-    return render_template('index.html.j2')
+
+	conn = sqlite3.connect('history.db')
+
+	c = conn.cursor()
+
+	c.execute("SELECT count(distinct mac), max(receivedDate) from historique")
+
+	requete1 = c.fetchall()
+
+	c.execute("SELECT count(*) from historique where receivedDate > DATE('now', '-1 day')")
+
+	requete2 = c.fetchall()
+
+	conn.close()
+
+	nbrUsers = requete1[0][0]
+
+	ecartStr = CalculDate(requete1)
+
+	data = {
+		"lastMaj" : ecartStr,
+		"distinctComputers" : nbrUsers,
+		"countRequest" : str(requete2[0][0])
+	}
+
+	return render_template('index.html.j2', data=data)
 
 @app.route('/vulnerabilites', methods=['GET'])
 def vulnerabilites():
