@@ -1,0 +1,53 @@
+{% extends "default.html.j2" %}
+
+{% block title %}
+  Configuration Alarme
+{% endblock %}
+
+{% block pageTitle %}
+  Configuration Alarme
+{% endblock %}
+
+{% block content %}
+
+<div class="col-md-6">
+  
+  <form method="POST" action="{{ url_for('alarmeMaj') }}">
+
+    <div class="form-group">
+      <label for="formGroupExampleInput">Nombre de connecter maximum : </label>
+      <input required type="text" class="form-control" value="{{ data.connectedUsersMax }}" id="formGroupExampleInput" placeholder="Entrer ici la nouvelle valeur ..." name="connectedUsersMax">
+    </div>
+
+    <div class="form-group">
+      <label for="formGroupExampleInput2">Charge maximale du CPU : </label>
+      <input required type="text" class="form-control" value="{{ data.cpuLoadMax }}" id="formGroupExampleInput2" placeholder="Entrer ici la nouvelle valeur ..." name="cpuLoadMax">
+    </div>
+
+    <div class="form-group">
+      <label for="formGroupExampleInput2">Utilisation maximale du disque dur : </label>
+      <input required type="text" class="form-control" value="{{ data.diskUsageMax }}" id="formGroupExampleInput2" placeholder="Entrer ici la nouvelle valeur ..." name="diskUsageMax">
+    </div>
+
+    <div class="form-group">
+      <label for="formGroupExampleInput2">Utilisation maximale de la RAM : </label>
+      <input required type="text" class="form-control" value="{{ data.memLoadMax }}" id="formGroupExampleInput2" placeholder="Entrer ici la nouvelle valeur ..." name="memLoadMax">
+    </div>
+
+    <div class="form-group">
+      <label for="formGroupExampleInput2">Utilisation maximale de l'espace SWAP : </label>
+      <input required type="text" class="form-control" value="{{ data.swapUsageMax }}" id="formGroupExampleInput2" placeholder="Entrer ici la nouvelle valeur ..." name="swapUsageMax">
+    </div>
+
+    <div class="form-group">
+      <label for="formGroupExampleInput2">Nombre maximum de processus simultanés : </label>
+      <input required type="text" class="form-control" value="{{ data.processCounter }}" id="formGroupExampleInput2" placeholder="Entrer ici la nouvelle valeur ..." name="processCounter">
+    </div>
+
+    <button type="submit" class="btn btn-primary mb-4" style="text-transform: uppercase;">Envoyer</button>
+
+  </form>
+
+</div>
+
+{% endblock content %}

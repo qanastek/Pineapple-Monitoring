@@ -66,20 +66,13 @@
 
       <!-- Nav Item - Pages Collapse Menu -->
       <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#headingMail" aria-expanded="true" aria-controls="headingMail">
-          <i class="far fa-envelope"></i>
-          <span>E-Mails</span>
-        </a>
-        <div id="headingMail" class="collapse" aria-labelledby="headingMail" data-parent="#accordionSidebar">
-          <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header">E-Mails :</h6>
 
-            <a class="collapse-item" href="{{ url_for('config_smtp') }}">Serveur SMTP</a>
-            <a class="collapse-item" href="{{ url_for('config_mail_data') }}">Données comprises</a>
-            <a class="collapse-item" href="{{ url_for('config_mail_template') }}">Personnalisation du mail</a>
-            <a class="collapse-item" href="{{ url_for('config_mail_signature') }}">Signature</a>
-          </div>
-        </div>
+        <li class="nav-item">
+          <a class="nav-link" href="{{ url_for('emails') }}">
+            <i class="far fa-envelope"></i>
+            <span>Paramètres E-mails</span></a>
+        </li>
+
       </li>
 
       <!-- Nav Item - Pages Collapse Menu -->
@@ -106,20 +99,11 @@
       <!-- Nav Item - Utilities Collapse Menu -->
       <li class="nav-item">
 
-        <a class="nav-link collapsed" href="{{ url_for('alarmes') }}" data-toggle="collapse" data-target="#headingAlarms" aria-expanded="true" aria-controls="headingAlarms">
-          <i class="fas fa-exclamation-triangle"></i>
-          <span>Alarmes</span>
-        </a>
-
-        <div id="headingAlarms" class="collapse" aria-labelledby="headingAlarms" data-parent="#accordionSidebar">
-          <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header">Alarmes :</h6>
-
-            <a class="collapse-item" href="{{ url_for('config_alarm_maj') }}">Fréquence de MAJ</a>
-            <a class="collapse-item" href="{{ url_for('config_alarm_quotas') }}">Quotas déclancheurs</a>
-            <a class="collapse-item" href="{{ url_for('config_alarm_other') }}">Autre</a>
-          </div>
-        </div>
+        <li class="nav-item">
+          <a class="nav-link" href="{{ url_for('alarmes') }}">
+            <i class="fas fa-exclamation-triangle"></i>
+            <span>Paramètres Alarmes</span></a>
+        </li>
 
       </li>
 

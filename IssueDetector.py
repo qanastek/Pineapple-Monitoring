@@ -23,6 +23,8 @@ import socket
 # Date
 import datetime
 
+from firebase_admin import messaging
+
 # --set
 SetSettings(sys.argv)
 
@@ -71,31 +73,31 @@ def Program(JsonIn):
 	# CPU Load Check
 	if ComputerInfos['currentCpuLoad'] >= data["cpuLoadMax"] :
 		issueCounter += 1
-		errors.append("cpu overload")
+		errors.append("cpu overload : " + str(ComputerInfos["currentCpuLoad"]) + " %")
 
 	# Disk Usage Check
 	if ComputerInfos['currentDiskUsage'] >= data["diskUsageMax"] :
 		issueCounter += 1
-		errors.append("disk saturate")
+		errors.append("disk saturate : " + str(ComputerInfos["currentDiskUsage"]) + " %")
 
 	# Swap Usage Check
 	if ComputerInfos['currentSwapUsage'] >= data["swapUsageMax"] :
 		issueCounter += 1
-		errors.append("swap saturate")
+		errors.append("swap saturate : " + str(ComputerInfos["currentSwapUsage"]) + " %")
 
 	# Memory Load Check
 	if ComputerInfos['currentMemLoad'] >= data["memLoadMax"] :
 		issueCounter += 1
-		errors.append("memory saturate")
+		errors.append("memory saturate : " + str(ComputerInfos["currentMemLoad"]) + " %")
 
 	# Check how much users was connected
 	if ComputerInfos['currentConnectedUsers'] >= data["connectedUsersMax"] :
 		issueCounter += 1
-		errors.append("Too much users was connected")
+		errors.append("Too much users was connected : " + str(ComputerInfos["currentConnectedUsers"]) + " users")
 
 	if ComputerInfos['processCounter'] >= data["processCounter"] :
 		issueCounter += 1
-		errors.append("Too much process are running")
+		errors.append("Too much process are running : " + str(ComputerInfos["processCounter"]) + " process")
 
 	if issueCounter > 0 :
 		date = datetime.datetime.now()
