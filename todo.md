@@ -1,3 +1,5 @@
+# TODO LIST :
+
 - [ ] Collecte d’information (sonde) - Client side
     - [x] Renvoie en Json pour l'API
     - [x] Avec --display afficher les informations de la machine
