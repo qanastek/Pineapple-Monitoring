@@ -36,6 +36,10 @@ def index():
 
 	c = conn.cursor()
 
+	donn = sqlite3.connect('alerts.db')
+
+	d = donn.cursor()
+
 	c.execute("SELECT count(distinct mac), max(receivedDate) from historique")
 
 	requete1 = c.fetchall()
@@ -44,7 +48,13 @@ def index():
 
 	requete2 = c.fetchall()
 
+	d.execute("SELECT count(*) from alerts where receivedDate > DATE('now', '-2 day')")
+
+	requete3 = d.fetchall()
+
+	# Fermeture des flux
 	conn.close()
+	donn.close()
 
 	nbrUsers = requete1[0][0]
 
@@ -53,7 +63,8 @@ def index():
 	data = {
 		"lastMaj" : ecartStr,
 		"distinctComputers" : nbrUsers,
-		"countRequest" : str(requete2[0][0])
+		"countRequest" : str(requete2[0][0]),
+		"alerts" : str(requete3[0][0])
 	}
 
 	return render_template('index.html.j2', data=data)

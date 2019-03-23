@@ -15,6 +15,8 @@ from toolbox import *
 # Import my own mail sender
 from MailSender import *
 
+from SaveData import *
+
 # For getting ip address
 import socket
 
@@ -100,3 +102,4 @@ def Program(JsonIn):
 		dateFR = str(date.day) + "/" + str(date.month) + "/" + str(date.year) + " à " + str(date.hour) + "H" + str(date.minute)
 
 		SendEmail("A computer have some issues", ErrorsToString(errors, ComputerInfos) + "\nDate : " + dateFR )
+		SaveDataAlerts(JsonIn)
