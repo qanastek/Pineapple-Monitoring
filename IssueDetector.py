@@ -23,8 +23,6 @@ import socket
 # Date
 import datetime
 
-from firebase_admin import messaging
-
 # --set
 SetSettings(sys.argv)
 
