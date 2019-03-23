@@ -25,6 +25,8 @@ Licence 2 Informatique - Groupe 4
         - [x] Moteur de base de données (Sqlite)
     - [ ] Un parseur web
     - [x] Mettre une nouvelle machine sur le réseau nécéssite aucune modification manuelle
+        - [ ] Auto dependencies install
+        - [ ] Auto install + CRON table
 - [ ] Affichage & Alerte
     - [x] Detection de crise
     - [x] Envoie de mail
@@ -32,12 +34,12 @@ Licence 2 Informatique - Groupe 4
         - [ ] Terminale
         - [ ] Graphique rrdTools
         - [ ] En ligne
-    - [x] Critaires de situation de crise configurable
-    - [x] Contenue de l'email configurable
+    - [x] Critaires de situation de crise configurable (En ligne)
+    - [x] Contenue de l'email configurable (En ligne)
     - [x] Envoie d'email par serveur SMTP Gmail    
 - [ ] Communication
     - [x] Module de réception (API avec flask)
-    - [x] Module récupération et sauvegarde des informations
+    - [x] Module récupération et sauvegarde des informations (Protocole POST)
     - [ ] Affiche l'historique sous forme de graphique
     - [x] Affichage web
 
