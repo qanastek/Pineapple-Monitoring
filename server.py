@@ -73,6 +73,11 @@ def index():
 def vulnerabilites():
     return render_template('vulnerabilites.html.j2')
 
+@app.route('/historiqueAlerts', methods=['GET'])
+def historiqueAlerts():
+	database = getTableAlerts()
+	return render_template('database.html.j2', DB=database)
+
 @app.route('/historique', methods=['GET'])
 def historique():
 	database = getTable()

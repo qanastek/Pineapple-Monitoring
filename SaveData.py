@@ -68,6 +68,22 @@ def createTable():
 
 	conn.close()
 
+def getTableAlerts():
+
+	conn = sqlite3.connect('alerts.db')
+
+	c = conn.cursor()
+
+	c.execute("SELECT * from alerts")
+
+	result = c.fetchall()
+
+	conn.commit()
+
+	conn.close()
+
+	return result
+
 def getTable():
 
 	conn = sqlite3.connect('history.db')
