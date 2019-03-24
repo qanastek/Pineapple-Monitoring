@@ -23,6 +23,8 @@ import socket
 # Date
 import datetime
 
+from rrdtoolsFunctions import *
+
 # --set
 SetSettings(sys.argv)
 
@@ -103,3 +105,4 @@ def Program(JsonIn):
 
 		SendEmail("A computer have some issues", ErrorsToString(errors, ComputerInfos) + "\nDate : " + dateFR )
 		SaveDataAlerts(JsonIn)
+		rrdtools(JsonIn)
