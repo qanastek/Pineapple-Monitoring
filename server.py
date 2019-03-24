@@ -263,7 +263,6 @@ def api():
 		Program(JsonIn)
 
 		SaveData(JsonIn)
-		rrdtools(JsonIn)
 
 		return "Data received", 200
 
