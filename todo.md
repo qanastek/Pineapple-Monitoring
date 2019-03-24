@@ -28,3 +28,8 @@
     - [x] Créer un programme qui gère tout coté client (Collecte, Empaquetage et Envoie)
     - [ ] Automatisé avec CRON l'exécution de ce programe
     - [ ] Un module qui récupère et sauvegarde les informations
+
+# TODO LIST A VAL :
+
+- [ ] Faire pineapple dans dossier installation
+- [ ] 
