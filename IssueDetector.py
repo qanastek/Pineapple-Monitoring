@@ -69,31 +69,31 @@ def Program(JsonIn):
 	errors = []
 
 	# CPU Load Check
-	if ComputerInfos['currentCpuLoad'] >= data["cpuLoadMax"] :
+	if int(ComputerInfos['currentCpuLoad']) >= int(data["cpuLoadMax"]) :
 		issueCounter += 1
 		errors.append("cpu overload : " + str(ComputerInfos["currentCpuLoad"]) + " %")
 
 	# Disk Usage Check
-	if ComputerInfos['currentDiskUsage'] >= data["diskUsageMax"] :
+	if int(ComputerInfos['currentDiskUsage']) >= int(data["diskUsageMax"]) :
 		issueCounter += 1
 		errors.append("disk saturate : " + str(ComputerInfos["currentDiskUsage"]) + " %")
 
 	# Swap Usage Check
-	if ComputerInfos['currentSwapUsage'] >= data["swapUsageMax"] :
+	if int(ComputerInfos['currentSwapUsage']) >= int(data["swapUsageMax"]) :
 		issueCounter += 1
 		errors.append("swap saturate : " + str(ComputerInfos["currentSwapUsage"]) + " %")
 
 	# Memory Load Check
-	if ComputerInfos['currentMemLoad'] >= data["memLoadMax"] :
+	if int(ComputerInfos['currentMemLoad']) >= int(data["memLoadMax"]) :
 		issueCounter += 1
 		errors.append("memory saturate : " + str(ComputerInfos["currentMemLoad"]) + " %")
 
 	# Check how much users was connected
-	if ComputerInfos['currentConnectedUsers'] >= data["connectedUsersMax"] :
+	if int(ComputerInfos['currentConnectedUsers']) >= int(data["connectedUsersMax"]) :
 		issueCounter += 1
 		errors.append("Too much users was connected : " + str(ComputerInfos["currentConnectedUsers"]) + " users")
 
-	if ComputerInfos['processCounter'] >= data["processCounter"] :
+	if int(ComputerInfos['processCounter']) >= int(data["processCounter"]) :
 		issueCounter += 1
 		errors.append("Too much process are running : " + str(ComputerInfos["processCounter"]) + " process")
 
