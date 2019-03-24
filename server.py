@@ -8,8 +8,6 @@ from IssueDetector import *
 from SaveData import *
 from datetime import *
 
-from rrdtoolsFunctions import *
-
 from lxml import html
 import requests
 
