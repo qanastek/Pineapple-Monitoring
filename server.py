@@ -111,11 +111,13 @@ def vulnerabilites():
 	date = tree.xpath('//div[@class="item cert-alert open"]/div/span[@class="item-date"]/text()')
 	url = tree.xpath('//div[@class="item cert-alert open"]/div/a[@class="item-link"]/@href')
 	url = "https://www.cert.ssi.gouv.fr" + unicode(url[0])
+	CERT = tree.xpath('//div[@class="item cert-alert open"]/div/span[@class="item-ref"]/a/text()')
 
 	cert = {
 		"titre" : titre[0],
 		"date" : date[0],
-		"url" : url
+		"url" : url,
+		"CERT" : CERT[0]
 	}
 
 	return render_template('vulnerabilites.html.j2', cert=cert)
@@ -261,7 +263,6 @@ def api():
 		Program(JsonIn)
 
 		SaveData(JsonIn)
-		rrdtools(JsonIn)
 
 		return "Data received", 200
 
