@@ -44,6 +44,41 @@ def utility_processor():
 
 	return dict(DateToRead=DateToRead,ToMacAddresse=ToMacAddresse)
 
+def CheckReceivedData(JsonIn):
+
+	if len(JsonIn) != 7:
+
+		return "Bad request, number of args not allowed ! " + '\n', 500
+
+	allowedElements = [
+		"mac",
+		"currentCpuLoad",
+		"currentDiskUsage",
+		"currentMemLoad",
+		"currentSwapUsage",
+		"processCounter",
+		"currentConnectedUsers"
+	]
+
+	for element in JsonIn:
+
+		# Check if key is allowed
+		if element not in allowedElements:
+
+			return "Invalid members " + element + "." + '\n', 500
+
+		# Check if they are integers
+		if element != "mac" and type(JsonIn[element]) != type(14):
+
+			return "Invalid type " + element + "." + '\n', 500
+
+		# Check if mac is an unicode
+		if element == "mac" and type(JsonIn[element]) != type(unicode("test")):
+
+			return "Invalid type " + element + "." + '\n', 500
+
+	return 200
+
 def CalculDate(requete):
 
 	now = datetime.now()
@@ -256,13 +291,18 @@ def api():
 		# Json reçu par le client via une requête POST
 		JsonIn = request.get_json()
 
+		if CheckReceivedData(JsonIn) != 200:
+
+			return CheckReceivedData(JsonIn)
+		
+
 		# Vérifie si les données reçus par le client
 		# Envoie un mail si une situation de crise à été détecter
 		Program(JsonIn)
 
 		SaveData(JsonIn)
 
-		return "Data received", 200
+		return "Data received" + '\n', 200
 
 	else :
 		return "Only POST is working" + '\n', 405
