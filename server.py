@@ -8,6 +8,11 @@ from IssueDetector import *
 from SaveData import *
 from datetime import *
 
+from rrdtoolsFunctions import *
+
+from lxml import html
+import requests
+
 # Lancement d'UTF-8
 reload(sys)  
 sys.setdefaultencoding('utf8')
@@ -98,7 +103,22 @@ def index():
 
 @app.route('/vulnerabilites', methods=['GET'])
 def vulnerabilites():
-    return render_template('vulnerabilites.html.j2')
+
+	page = requests.get('https://www.cert.ssi.gouv.fr/')
+	tree = html.fromstring(page.content)
+
+	titre = tree.xpath('//div[@class="item cert-alert open"]/div/span[@class="item-title"]/a/text()')
+	date = tree.xpath('//div[@class="item cert-alert open"]/div/span[@class="item-date"]/text()')
+	url = tree.xpath('//div[@class="item cert-alert open"]/div/a[@class="item-link"]/@href')
+	url = "https://www.cert.ssi.gouv.fr" + unicode(url[0])
+
+	cert = {
+		"titre" : titre[0],
+		"date" : date[0],
+		"url" : url
+	}
+
+	return render_template('vulnerabilites.html.j2', cert=cert)
 
 @app.route('/historiqueAlerts', methods=['GET'])
 def historiqueAlerts():
@@ -241,6 +261,7 @@ def api():
 		Program(JsonIn)
 
 		SaveData(JsonIn)
+		rrdtools(JsonIn)
 
 		return "Data received", 200
 
