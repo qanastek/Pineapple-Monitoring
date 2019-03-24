@@ -275,12 +275,6 @@ def alarmeMaj():
 
 	return render_template('alarmes.html.j2', data=data)
 
-@app.route('/rrdtools', methods=['GET'])
-def rrdtools():
-
-	return render_template('rrdtools.html.j2', data=data)
-	
-
 #------------------------#
 #   L'API commence ici	 #
 #------------------------#
