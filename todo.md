@@ -31,5 +31,5 @@
 
 # TODO LIST A VAL :
 
-- [ ] Faire pineapple dans dossier installation
-- [ ] 
+- [ ] Faire pineapple dans dossier d'installation
+- [ ] Finir le AUtoInstall.sh
