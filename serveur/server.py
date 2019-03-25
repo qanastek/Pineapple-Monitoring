@@ -1,5 +1,6 @@
+#!/usr/bin/env python
 # -*- coding: utf-8 -*-
-# encoding=utf8 
+# encoding=utf8
 
 # curl -H "Content-type: application/json" -X POST -d '{ "currentCpuLoad": 95, "currentDiskUsage": 95, "currentSwapUsage" : 99, "currentMemLoad" : 99, "currentConnectedUsers" : 80 }' http://127.0.0.1:5000/
  
@@ -277,12 +278,11 @@ def alarmeMaj():
 
 @app.route('/loginLoad', methods=['POST'])
 def loginLoad():
-	login = request.form['login']
-	password = request.form['password']
 
-	if login == "admin" and password == "admin":
+	login = str(request.form['login'])
+	password = str(request.form['password'])
 
-		return render_template('login.html.j2')
+	return render_template('index.html.j2')
 
 @app.route('/login', methods=['GET'])
 def login():
