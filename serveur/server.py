@@ -275,6 +275,20 @@ def alarmeMaj():
 
 	return render_template('alarmes.html.j2', data=data)
 
+@app.route('/loginLoad', methods=['POST'])
+def loginLoad():
+	login = request.form['login']
+	password = request.form['password']
+
+	if login == "admin" and password == "admin":
+
+		return render_template('login.html.j2')
+
+@app.route('/login', methods=['GET'])
+def login():
+
+	return render_template('login.html.j2')
+
 #------------------------#
 #   L'API commence ici	 #
 #------------------------#
