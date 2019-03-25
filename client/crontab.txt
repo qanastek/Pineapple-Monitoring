@@ -1,1 +1,1 @@
-# 1 * * * * pineapple
+* * * * * pineapple>>/usr/lib/pineapple/POSTcode.txt
