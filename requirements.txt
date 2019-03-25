@@ -1,3 +1,0 @@
-psutil
-texttable 
-uuid
