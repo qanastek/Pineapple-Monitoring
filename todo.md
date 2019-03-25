@@ -29,7 +29,10 @@
     - [ ] Automatisé avec CRON l'exécution de ce programe
     - [ ] Un module qui récupère et sauvegarde les informations
 
+- [ ] Graphe
+- [ ] First install send infos about the computer like the cpus cores, hostname or hardrive capacity
+
 # TODO LIST A VAL :
 
-- [ ] Faire pineapple dans dossier d'installation
-- [ ] Finir le AUtoInstall.sh
+- [x] Faire pineapple dans dossier d'installation
+- [x] Finir le AUtoInstall.sh
