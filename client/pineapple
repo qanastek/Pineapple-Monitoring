@@ -1,0 +1,3 @@
+#!/bin/bash
+
+python /usr/lib/pineapple/AutoCheckUser.py
