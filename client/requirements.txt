@@ -1,3 +1,4 @@
 psutil
 texttable 
 uuid
+requests
