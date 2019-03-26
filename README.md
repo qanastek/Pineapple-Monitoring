@@ -19,14 +19,14 @@ Licence 2 Informatique - Groupe 4
 - [ ] Collecte d'information
     - [x] Créer la sonde
     - [ ] Mettre en place 3 sondes sur des VM avec CRON
-- [ ] Stockage & Collecte Web
+- [x] Stockage & Collecte Web
     - [x] Stockage de données avec gestion d'historique
         - [x] Utilisation de standard (Json)
         - [x] Moteur de base de données (Sqlite)
-    - [ ] Un parseur web
+    - [x] Un parseur web
     - [x] Mettre une nouvelle machine sur le réseau nécéssite aucune modification manuelle
-        - [ ] Auto dependencies install
-        - [ ] Auto install + CRON table
+        - [x] Auto dependencies install
+        - [x] Auto install + CRON table
 - [ ] Affichage & Alerte
     - [x] Detection de crise
     - [x] Envoie de mail
