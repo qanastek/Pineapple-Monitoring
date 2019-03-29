@@ -16,11 +16,11 @@ def dropTable():
 
 def addColumn():
 
-	conn = sqlite3.connect('history.db')
+	conn = sqlite3.connect('alerts.db')
 
 	c = conn.cursor()
 
-	c.execute("""ALTER TABLE historique ADD COLUMN sysExp text""")
+	c.execute("""ALTER TABLE alerts ADD COLUMN sysExp text""")
 
 	conn.commit()
 

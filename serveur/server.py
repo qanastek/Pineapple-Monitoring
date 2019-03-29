@@ -317,7 +317,7 @@ def login():
 #------------------------#
 #   L'API commence ici	 #
 #------------------------#
-@app.route('/', methods=['POST'])
+@app.route('/api', methods=['POST'])
 def api():
 
 	if request.method == 'POST':
