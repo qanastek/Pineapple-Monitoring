@@ -16,11 +16,11 @@ def dropTable():
 
 def addColumn():
 
-	conn = sqlite3.connect('alerts.db')
+	conn = sqlite3.connect('history.db')
 
 	c = conn.cursor()
 
-	c.execute("""ALTER TABLE alerts ADD COLUMN sysExp text""")
+	c.execute("""ALTER TABLE historique ADD COLUMN hostName text""")
 
 	conn.commit()
 
@@ -35,13 +35,14 @@ def createTableAlerts():
 	c.execute("""CREATE TABLE alerts(
 		mac text,
 		receivedDate date,
-		currentCpuLoad text,
-		currentDiskUsage text,
-		currentSwapUsage text,
-		currentMemLoad text,
-		currentConnectedUsers text,
-		processCounter text,
-		sysExp text
+		currentCpuLoad int,
+		currentDiskUsage int,
+		currentSwapUsage int,
+		currentMemLoad int,
+		currentConnectedUsers int,
+		processCounter int,
+		sysExp text,
+		coreCounter int
 	)""")
 
 	conn.commit()
@@ -57,13 +58,14 @@ def createTable():
 	c.execute("""CREATE TABLE historique(
 		mac text,
 		receivedDate date,
-		currentCpuLoad text,
-		currentDiskUsage text,
-		currentSwapUsage text,
-		currentMemLoad text,
-		currentConnectedUsers text,
-		processCounter text,
-		sysExp text
+		currentCpuLoad int,
+		currentDiskUsage int,
+		currentSwapUsage int,
+		currentMemLoad int,
+		currentConnectedUsers int,
+		processCounter int,
+		sysExp text,
+		coreCounter int
 	)""")
 
 	conn.commit()
@@ -93,6 +95,22 @@ def getTable():
 	c = conn.cursor()
 
 	c.execute("SELECT * from historique")
+
+	result = c.fetchall()
+
+	conn.commit()
+
+	conn.close()
+
+	return result
+
+def getComputers():
+
+	conn = sqlite3.connect('history.db')
+
+	c = conn.cursor()
+
+	c.execute("SELECT distinct mac, sysExp, coreCounter, treadsCounter, cpuModel, hostName from historique order by receivedDate DESC;")
 
 	result = c.fetchall()
 
@@ -145,7 +163,11 @@ def SaveData(JsonIn):
 		:currentMemLoad,
 		:currentConnectedUsers,
 		:processCounter,
-		:sysExp)""", {
+		:sysExp,
+		:coreCounter,
+		:treadsCounter,
+		:cpuModel,
+		:hostName)""", {
 			'mac' : JsonIn['mac'],
 			'receivedDate' : datetime.datetime.now(),
 			'currentCpuLoad' : JsonIn['currentCpuLoad'],
@@ -154,7 +176,11 @@ def SaveData(JsonIn):
 			'currentMemLoad' : JsonIn['currentMemLoad'],
 			'currentConnectedUsers' : JsonIn['currentConnectedUsers'],
 			'processCounter' : JsonIn['processCounter'],
-			'sysExp' : JsonIn['sysExp']
+			'sysExp' : JsonIn['sysExp'],
+			'coreCounter' : JsonIn['coreCounter'],
+			'treadsCounter' : JsonIn['treadsCounter'],
+			'cpuModel' : JsonIn['cpuModel'],
+			'hostName' : JsonIn['hostName']
 		})
 
 	conn.commit()
@@ -176,7 +202,11 @@ def SaveDataAlerts(JsonIn):
 		:currentMemLoad,
 		:currentConnectedUsers,
 		:processCounter,
-		:sysExp)""", {
+		:sysExp,
+		:coreCounter,
+		:treadsCounter,
+		:cpuModel,
+		:hostName)""", {
 			'mac' : JsonIn['mac'],
 			'receivedDate' : datetime.datetime.now(),
 			'currentCpuLoad' : JsonIn['currentCpuLoad'],
@@ -185,7 +215,11 @@ def SaveDataAlerts(JsonIn):
 			'currentMemLoad' : JsonIn['currentMemLoad'],
 			'currentConnectedUsers' : JsonIn['currentConnectedUsers'],
 			'processCounter' : JsonIn['processCounter'],
-			'sysExp' : JsonIn['sysExp']
+			'sysExp' : JsonIn['sysExp'],
+			'coreCounter' : JsonIn['coreCounter'],
+			'treadsCounter' : JsonIn['treadsCounter'],
+			'cpuModel' : JsonIn['cpuModel'],
+			'hostName' : JsonIn['hostName']
 		})
 
 	conn.commit()

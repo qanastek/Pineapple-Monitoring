@@ -1,0 +1,102 @@
+{% extends "default.html.j2" %}
+
+{% block title %}
+  Liste des ordinateurs
+{% endblock %}
+
+{% block pageTitle %}
+  Liste des ordinateurs
+{% endblock %}
+
+{% block lien %}
+  {{ url_for('ordinateurs') }}
+{% endblock lien %}
+
+{% block content %}
+
+    <div class="row">
+
+      <div class="col-xl-12 col-md-12 mb-4">
+
+        <table class="table">
+
+          <thead>
+            <tr style="text-transform: uppercase;">
+              <th scope="col">OS</th>
+              <th scope="col">Hostname</th>
+
+              <th scope="col">MAC</th>
+              <th scope="col">CPU</th>
+
+              <th scope="col">Cores</th>
+              <th scope="col">Threads</th>
+
+              <th scope="col">RAM</th>
+              <th scope="col">Disk Size</th>
+
+              <th scope="col">Options</th>
+            </tr>
+          </thead>
+
+          <tbody>
+
+            {% for entries in DB | sort(attribute='1', reverse = True) %}
+
+            <tr>
+              <td>
+
+                {% if entries.1 == "linux" %}
+
+                  <i class="fab fa-linux" style="font-size: 1.5em;"></i>
+
+                {% elif entries.1 == "windows" %}
+
+                  <i class="fab fa-windows" style="font-size: 1.5em;"></i>
+
+                {% else %}
+
+                  <i class="fas fa-question"></i>
+
+                {% endif %} 
+
+              </td>
+              <td>{{ entries.5 }}</td>
+
+              <td>
+                {{ ToMacAddresse(entries.0) }}
+              </td>
+              <td>{{ entries.3 }}</td>
+
+              <td>{{ entries.2 }}</td>
+              <td>{{ entries.4 }}</td>
+
+              <td>value</td>
+              <td>value</td>
+
+              <td>
+                <button type="button" class="btn btn-outline-primary">More Infos</button>
+              </td>
+            </tr>
+
+            {% endfor %}
+
+          </tbody>
+
+        </table>
+
+      </div>
+
+    </div>
+
+{% endblock content %}
+
+{% block script %}
+
+  <!-- Page level plugins -->
+  <script src="{{ url_for('static', filename='vendor/chart.js/Chart.min.js') }}"></script>
+
+  <!-- Page level custom scripts -->
+  <script src="{{ url_for('static', filename='js/demo/chart-area-demo.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/demo/chart-pie-demo.js') }}"></script>
+
+{% endblock script %}

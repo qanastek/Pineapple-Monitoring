@@ -55,13 +55,18 @@ def CheckReceivedData(JsonIn):
 		"currentSwapUsage",
 		"processCounter",
 		"currentConnectedUsers",
-		"sysExp"
+		"sysExp",
+		"coreCounter",
+		"treadsCounter",
+		"cpuModel",
+		"hostName"
 	]
 
-	allowedString = ["mac", "sysExp"]
+	allowedString = ["mac", "sysExp", "cpuModel", "hostName"]
 
 	if len(JsonIn) != len(allowedElements):
 
+		print str(len(JsonIn)) + " diff " + str(len(allowedElements))
 		return "Bad request, number of args not allowed ! " + '\n', 501
 
 	for element in JsonIn:
@@ -191,6 +196,7 @@ def historiqueAlerts():
 
 @app.route('/historique', methods=['GET'])
 def historique():
+
 	database = getTable()
 
 	sort = request.args.get('sort')
@@ -199,7 +205,10 @@ def historique():
 
 @app.route('/ordinateurs', methods=['GET'])
 def ordinateurs():
-	return "ordinateurs"
+
+	database = getComputers()
+
+	return render_template('Computers.html.j2', DB=database)
 
 @app.route('/general', methods=['GET'])
 def general():

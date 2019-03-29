@@ -44,7 +44,11 @@ def GetInfo(JsonIn):
 		'currentMemLoad' : JsonIn['currentMemLoad'],
 		'currentConnectedUsers' : JsonIn['currentConnectedUsers'],
 		"processCounter" : JsonIn['processCounter'],
-		'sysExp' : JsonIn['sysExp']
+		'sysExp' : JsonIn['sysExp'],
+		"coreCounter" : JsonIn['coreCounter'],
+		"treadsCounter" : JsonIn['treadsCounter'],
+		"cpuModel" : JsonIn['cpuModel'],
+		"hostName" : JsonIn['hostName']
 	}
 
 	return jsonOut

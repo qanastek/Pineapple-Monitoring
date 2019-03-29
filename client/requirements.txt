@@ -2,3 +2,4 @@ psutil
 texttable 
 uuid
 requests
+py-cpuinfo

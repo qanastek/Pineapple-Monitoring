@@ -13,4 +13,4 @@ Header = {'Content-type': 'application/json', 'Accept': 'text/plain'}
 
 resultPOST = requests.post(URL, data=data, headers=Header)
 
-print "---| POST Code : " + str(resultPOST.status_code) + " |---"
+print ("---| POST Code : " + str(resultPOST.status_code) + " |---")

@@ -9,7 +9,7 @@ import psutil
 from texttable import Texttable
 
 # Library for getting OS name
-import os
+import platform
 
 # Bash command
 import subprocess
@@ -21,8 +21,12 @@ import sys
 # Adresse MAC
 from uuid import getnode as get_mac
 
+import cpuinfo
+
+import socket
+
 # OS name (Linux/Mac or Windows)
-os = os.uname()[0]
+os = platform.system()
 
 def optionDisplay(cpuUsage,diskUsage,memoryUsage,swapUsage,usersCounter,processCounter,coreCounter,treadsCounter,sysExp):
 
@@ -44,16 +48,22 @@ def optionDisplay(cpuUsage,diskUsage,memoryUsage,swapUsage,usersCounter,processC
 				['Running Process', processCounter]
 			])
 
-		print table.draw()
+		print (table.draw())
 
 		sys.exit(0)
 
 def CollectData():
 
+	if os.lower() == "Windows":
+
+		return str(os), 404
+
 	if os.lower() == "linux":
 
 		# Operating system
 		sysExp = os.lower()
+
+		hostName = socket.gethostname()
 
 		# Utilisation processeur
 		# Interval => Précision après la virgule
@@ -79,6 +89,8 @@ def CollectData():
 
 		macAdd = str(get_mac())
 
+		cpuModel = cpuinfo.get_cpu_info()['brand']
+
 		# If --display show a table
 		optionDisplay(cpuUsage,diskUsage,memoryUsage,swapUsage,usersCounter,processCounter,coreCounter,treadsCounter,sysExp)
 
@@ -92,7 +104,11 @@ def CollectData():
 			"currentSwapUsage" : int(swapUsage),
 			"currentConnectedUsers" : int(usersCounter),
 			"processCounter" : int(processCounter),
-			"sysExp" : str(sysExp)
+			"sysExp" : str(sysExp),
+			"coreCounter" : int(coreCounter),
+			"treadsCounter" : int(treadsCounter),
+			"cpuModel" : str(cpuModel),
+			"hostName" : str(hostName)
 		}
 		, indent=4, sort_keys=True)
 
