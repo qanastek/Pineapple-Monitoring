@@ -118,6 +118,18 @@ def index():
 
 	requete3 = d.fetchall()
 
+	c.execute("""SELECT COUNT(*) AS 'Requests',
+				strftime('%d', receivedDate) AS 'Day',
+				strftime('%m', receivedDate) AS 'Month',
+				strftime('%Y', receivedDate) AS 'Year'
+				FROM historique
+				GROUP BY strftime('%d', receivedDate),
+				strftime('%m', receivedDate), strftime('%y', receivedDate)
+				ORDER BY 'Year', 'Month', 'Day'
+				Limit 7;""")
+
+	requete4 = c.fetchall()
+
 	# Fermeture des flux
 	conn.close()
 	donn.close()
@@ -126,11 +138,21 @@ def index():
 
 	ecartStr = CalculDate(requete1)
 
+	values = []
+
+	for x in range( len(requete4[0]) + 1 ) :
+
+		date = requete4[x][1] + "/" + requete4[x][2] + "/" + requete4[x][3]
+		date.encode("utf-8")
+
+		values.append([int(requete4[x][0]), str(date)])
+
 	data = {
 		"lastMaj" : ecartStr,
 		"distinctComputers" : nbrUsers,
 		"countRequest" : str(requete2[0][0]),
-		"alerts" : str(requete3[0][0])
+		"alerts" : str(requete3[0][0]),
+		"value" : values
 	}
 
 	return render_template('index.html.j2', data=data)

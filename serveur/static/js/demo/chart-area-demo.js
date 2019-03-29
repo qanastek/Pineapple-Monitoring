@@ -27,12 +27,26 @@ function number_format(number, decimals, dec_point, thousands_sep) {
   return s.join(dec);
 }
 
+var today = new Date();
+var day = today.getDate();
+var month = today.getMonth() + 1;
+var year = today.getFullYear();
+
 // Area Chart Example
 var ctx = document.getElementById("myAreaChart");
 var myLineChart = new Chart(ctx, {
   type: 'line',
   data: {
-    labels: ["Jan", "Fév", "Mar", "Avr", "Mai", "Juin", "Juil", "Août", "Sept", "Oct", "Nov", "Dec"],
+    labels: [
+      day - 7 + " / " + month + " / " + year,
+      day - 6 + " / " + month + " / " + year,
+      day - 5 + " / " + month + " / " + year,
+      day - 4 + " / " + month + " / " + year,
+      day - 3 + " / " + month + " / " + year,
+      day - 2 + " / " + month + " / " + year,
+      day - 1 + " / " + month + " / " + year,
+      day + " / " + month + " / " + year
+    ],
     datasets: [{
       label: "Alarmes",
       lineTension: 0.3,
@@ -46,7 +60,16 @@ var myLineChart = new Chart(ctx, {
       pointHoverBorderColor: "rgba(78, 115, 223, 1)",
       pointHitRadius: 10,
       pointBorderWidth: 2,
-      data: [10, 11, 8, 10, 7, 9, 12, 18, 15, 12, 7, 11, 10, 11, 8, 10, 7, 9, 12, 18, 15, 12, 7,],
+      data: [
+        {{ 1+1 | tojson }},
+        11,
+        8,
+        10,
+        7,
+        9,
+        12,
+        18
+      ],
     }],
   },
   options: {
