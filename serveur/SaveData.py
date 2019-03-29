@@ -20,7 +20,7 @@ def addColumn():
 
 	c = conn.cursor()
 
-	c.execute("""ALTER TABLE historique ADD COLUMN receivedDate date""")
+	c.execute("""ALTER TABLE historique ADD COLUMN sysExp text""")
 
 	conn.commit()
 
@@ -40,7 +40,8 @@ def createTableAlerts():
 		currentSwapUsage text,
 		currentMemLoad text,
 		currentConnectedUsers text,
-		processCounter text
+		processCounter text,
+		sysExp text
 	)""")
 
 	conn.commit()
@@ -61,7 +62,8 @@ def createTable():
 		currentSwapUsage text,
 		currentMemLoad text,
 		currentConnectedUsers text,
-		processCounter text
+		processCounter text,
+		sysExp text
 	)""")
 
 	conn.commit()
@@ -142,7 +144,8 @@ def SaveData(JsonIn):
 		:currentSwapUsage,
 		:currentMemLoad,
 		:currentConnectedUsers,
-		:processCounter)""", {
+		:processCounter,
+		:sysExp)""", {
 			'mac' : JsonIn['mac'],
 			'receivedDate' : datetime.datetime.now(),
 			'currentCpuLoad' : JsonIn['currentCpuLoad'],
@@ -150,7 +153,8 @@ def SaveData(JsonIn):
 			'currentSwapUsage' : JsonIn['currentSwapUsage'],
 			'currentMemLoad' : JsonIn['currentMemLoad'],
 			'currentConnectedUsers' : JsonIn['currentConnectedUsers'],
-			'processCounter' : JsonIn['processCounter']
+			'processCounter' : JsonIn['processCounter'],
+			'sysExp' : JsonIn['sysExp']
 		})
 
 	conn.commit()
@@ -171,7 +175,8 @@ def SaveDataAlerts(JsonIn):
 		:currentSwapUsage,
 		:currentMemLoad,
 		:currentConnectedUsers,
-		:processCounter)""", {
+		:processCounter,
+		:sysExp)""", {
 			'mac' : JsonIn['mac'],
 			'receivedDate' : datetime.datetime.now(),
 			'currentCpuLoad' : JsonIn['currentCpuLoad'],
@@ -179,7 +184,8 @@ def SaveDataAlerts(JsonIn):
 			'currentSwapUsage' : JsonIn['currentSwapUsage'],
 			'currentMemLoad' : JsonIn['currentMemLoad'],
 			'currentConnectedUsers' : JsonIn['currentConnectedUsers'],
-			'processCounter' : JsonIn['processCounter']
+			'processCounter' : JsonIn['processCounter'],
+			'sysExp' : JsonIn['sysExp']
 		})
 
 	conn.commit()

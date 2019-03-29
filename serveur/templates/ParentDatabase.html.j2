@@ -25,6 +25,7 @@
 
           <thead>
             <tr style="text-transform: uppercase;">
+              <th scope="col">OS</th>
               <th scope="col">MAC</th>
               <th scope="col">Date</th>
               <th scope="col">Cpu Load</th>
@@ -56,6 +57,15 @@
             {% for entries in DB | sort(attribute='1', reverse = sens) %}
 
             <tr>
+              <td>
+                {% if entries.8 == "linux" %}
+                  <i class="fab fa-linux" style="font-size: 1.5em;"></i>
+                {% elif entries.8 == "windows" %}
+                  <i class="fab fa-windows" style="font-size: 1.5em;"></i>
+                {% else %}
+                  <i class="fas fa-question"></i>
+                {% endif %} 
+              </td>
               <td>{{ ToMacAddresse(entries.0) }}</td>
               <td>{{ DateToRead(entries.1) }} </td>
               <td>{{ entries.2 }}</td>

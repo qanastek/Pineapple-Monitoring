@@ -43,7 +43,8 @@ def GetInfo(JsonIn):
 		'currentSwapUsage' : JsonIn['currentSwapUsage'],
 		'currentMemLoad' : JsonIn['currentMemLoad'],
 		'currentConnectedUsers' : JsonIn['currentConnectedUsers'],
-		"processCounter" : JsonIn['processCounter']
+		"processCounter" : JsonIn['processCounter'],
+		'sysExp' : JsonIn['sysExp']
 	}
 
 	return jsonOut

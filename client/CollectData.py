@@ -24,7 +24,7 @@ from uuid import getnode as get_mac
 # OS name (Linux/Mac or Windows)
 os = os.uname()[0]
 
-def optionDisplay(cpuUsage,diskUsage,memoryUsage,swapUsage,usersCounter,processCounter,coreCounter,treadsCounter):
+def optionDisplay(cpuUsage,diskUsage,memoryUsage,swapUsage,usersCounter,processCounter,coreCounter,treadsCounter,sysExp):
 
 	if len(sys.argv) == 2 and sys.argv[1] == "--display":
 
@@ -33,6 +33,7 @@ def optionDisplay(cpuUsage,diskUsage,memoryUsage,swapUsage,usersCounter,processC
 		table.add_rows(
 			[
 				['Info', 'Value'],
+				['OS', sysExp],
 				['Cpu Load', cpuUsage],
 				['Cores', coreCounter],
 				['Treads', treadsCounter],
@@ -51,6 +52,9 @@ def CollectData():
 
 	if os.lower() == "linux":
 
+		# Operating system
+		sysExp = os.lower()
+
 		# Utilisation processeur
 		# Interval => Précision après la virgule
 		cpuUsage = psutil.cpu_percent(interval=1)
@@ -68,14 +72,15 @@ def CollectData():
 
 		swapUsage = psutil.swap_memory().percent
 
-		usersCounter = len(psutil.users())
+		bashCommand  = "who | sort --key=1,1 --unique | wc --lines"
+		usersCounter = subprocess.check_output(['bash','-c', bashCommand])
 
 		processCounter = len(psutil.pids())
 
 		macAdd = str(get_mac())
 
 		# If --display show a table
-		optionDisplay(cpuUsage,diskUsage,memoryUsage,swapUsage,usersCounter,processCounter,coreCounter,treadsCounter)
+		optionDisplay(cpuUsage,diskUsage,memoryUsage,swapUsage,usersCounter,processCounter,coreCounter,treadsCounter,sysExp)
 
 		# Else send a JSON response
 		data = json.dumps(
@@ -86,7 +91,8 @@ def CollectData():
 			"currentMemLoad" : int(memoryUsage),
 			"currentSwapUsage" : int(swapUsage),
 			"currentConnectedUsers" : int(usersCounter),
-			"processCounter" : int(processCounter)
+			"processCounter" : int(processCounter),
+			"sysExp" : str(sysExp)
 		}
 		, indent=4, sort_keys=True)
 
@@ -95,4 +101,5 @@ def CollectData():
 		return data
 
 if len(sys.argv) == 2 and sys.argv[1] == "--display":
+
 	CollectData()

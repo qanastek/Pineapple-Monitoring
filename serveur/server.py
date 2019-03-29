@@ -47,10 +47,6 @@ def utility_processor():
 
 def CheckReceivedData(JsonIn):
 
-	if len(JsonIn) != 7:
-
-		return "Bad request, number of args not allowed ! " + '\n', 500
-
 	allowedElements = [
 		"mac",
 		"currentCpuLoad",
@@ -58,25 +54,32 @@ def CheckReceivedData(JsonIn):
 		"currentMemLoad",
 		"currentSwapUsage",
 		"processCounter",
-		"currentConnectedUsers"
+		"currentConnectedUsers",
+		"sysExp"
 	]
+
+	allowedString = ["mac", "sysExp"]
+
+	if len(JsonIn) != len(allowedElements):
+
+		return "Bad request, number of args not allowed ! " + '\n', 501
 
 	for element in JsonIn:
 
 		# Check if key is allowed
 		if element not in allowedElements:
 
-			return "Invalid members " + element + "." + '\n', 500
+			return "Invalid members " + element + "." + '\n', 502
 
 		# Check if they are integers
-		if element != "mac" and type(JsonIn[element]) != type(14):
+		if element not in allowedString and type(JsonIn[element]) != type(14):
 
-			return "Invalid type " + element + "." + '\n', 500
+			return "Invalid type " + element + "." + '\n', 503
 
-		# Check if mac is an unicode
-		if element == "mac" and type(JsonIn[element]) != type(unicode("test")):
+		# Check if mac or os is an unicode
+		if element in allowedString and type(JsonIn[element]) != type(unicode("test")):
 
-			return "Invalid type " + element + "." + '\n', 500
+			return "Invalid type " + element + "." + '\n', 504
 
 	return 200
 
@@ -316,10 +319,13 @@ def login():
 #------------------------#
 @app.route('/', methods=['POST'])
 def api():
+
 	if request.method == 'POST':
 
 		# Json reçu par le client via une requête POST
 		JsonIn = request.get_json()
+
+		print str(json.dumps(JsonIn, indent=4, sort_keys=True))
 
 		if CheckReceivedData(JsonIn) != 200:
 
