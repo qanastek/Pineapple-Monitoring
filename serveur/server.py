@@ -84,16 +84,16 @@ def CalculDate(requete):
 
 	now = datetime.now()
 	old = datetime.strptime(requete[0][1], '%Y-%m-%d %H:%M:%S.%f')
+
 	dateEcart = now - old
-	dateEcart = dateEcart.seconds
+	s = dateEcart.seconds
 
-	ecart = {
-		"hours" : str(dateEcart / 3600),
-		"minutes" : str((dateEcart / 60) % 60),
-		"seconds" : str(dateEcart % 60)
-	}
+	daysEcart = int(dateEcart.days * 24)
 
-	return ecart['hours'] + " H " + ecart['minutes'] + " m " + ecart['seconds'] + " s"
+	hours, remainder = divmod(s, 3600)
+	minutes, seconds = divmod(remainder, 60)
+
+	return str('{:02}H{:02}m{:02}s'.format(int(hours) + daysEcart, int(minutes), int(seconds)))
 
 @app.route('/', methods=['GET'])
 def index():
