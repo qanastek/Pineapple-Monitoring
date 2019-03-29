@@ -5,7 +5,7 @@
 from CollectData import *
 import requests, json
 
-URL = 'http://0.0.0.0:5000/'
+URL = 'http://0.0.0.0:5000/api'
 data = CollectData()
 data = json.dumps(data, indent=4, sort_keys=True)
 

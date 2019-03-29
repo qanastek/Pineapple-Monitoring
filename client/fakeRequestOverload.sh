@@ -7,4 +7,4 @@ curl -XPOST -H "Content-type: application/json" -d '{
 	"currentConnectedUsers" : 100,
 	"processCounter" : 1400,
 	"sysExp" : "linux"
-}' 'http://127.0.0.1:5000/'
+}' 'http://127.0.0.1:5000/api'
