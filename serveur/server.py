@@ -143,7 +143,7 @@ def index():
 
 	values = []
 
-	for x in range( len(requete4[0]) + 1 ) :
+	for x in range( len(requete4) ) :
 
 		date = requete4[x][1] + "/" + requete4[x][2] + "/" + requete4[x][3]
 		date.encode("utf-8")
@@ -324,8 +324,6 @@ def api():
 
 		# Json reçu par le client via une requête POST
 		JsonIn = request.get_json()
-
-		print str(json.dumps(JsonIn, indent=4, sort_keys=True))
 
 		if CheckReceivedData(JsonIn) != 200:
 
