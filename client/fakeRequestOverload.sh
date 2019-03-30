@@ -6,5 +6,9 @@ curl -XPOST -H "Content-type: application/json" -d '{
 	"currentSwapUsage" : 100,
 	"currentConnectedUsers" : 100,
 	"processCounter" : 1400,
-	"sysExp" : "linux"
+	"sysExp" : "linux",
+	"coreCounter" : 6,
+	"treadsCounter" : 12,
+	"cpuModel" : "I9-7920X 2.9 Ghz",
+	"hostName" : "Big Boy"
 }' 'http://127.0.0.1:5000/api'

@@ -54,11 +54,65 @@ def optionDisplay(cpuUsage,diskUsage,memoryUsage,swapUsage,usersCounter,processC
 
 def CollectData():
 
-	if os.lower() == "Windows":
+	# Windows
+	if os.lower() == "windows":
 
-		return str(os), 404
+		# Operating system
+		sysExp = os.lower()
 
-	if os.lower() == "linux":
+		hostName = socket.gethostname()
+
+		# Utilisation processeur
+		# Interval => Précision après la virgule
+		cpuUsage = psutil.cpu_percent(interval=1)
+
+		# Nombre de coeurs physique
+		coreCounter = psutil.cpu_count(logical=False)
+
+		# Nombre de coeurs logiques
+		treadsCounter = psutil.cpu_count(logical=True)
+
+		diskUsage = psutil.disk_usage('/').percent
+
+		memoryUsage = psutil.virtual_memory().percent
+
+		swapUsage = psutil.swap_memory().percent
+
+		usersCounter = len(psutil.users())
+
+		processCounter = len(psutil.pids())
+
+		macAdd = str(get_mac())
+
+		cpuModel = cpuinfo.get_cpu_info()['brand']
+
+		# If --display show a table
+		optionDisplay(cpuUsage,diskUsage,memoryUsage,swapUsage,usersCounter,processCounter,coreCounter,treadsCounter,sysExp)
+
+		# Else send a JSON response
+		data = json.dumps(
+		{
+			"mac" : str(macAdd),
+			"currentCpuLoad" : int(cpuUsage),
+			"currentDiskUsage" : int(diskUsage),
+			"currentMemLoad" : int(memoryUsage),
+			"currentSwapUsage" : int(swapUsage),
+			"currentConnectedUsers" : int(usersCounter),
+			"processCounter" : int(processCounter),
+			"sysExp" : str(sysExp),
+			"coreCounter" : int(coreCounter),
+			"treadsCounter" : int(treadsCounter),
+			"cpuModel" : str(cpuModel),
+			"hostName" : str(hostName)
+		}
+		, indent=4, sort_keys=True)
+
+		data = json.loads(data) # JSON HERE
+
+		return data
+
+	# Linux or Mac
+	if os.lower() == "linux" or os.lower() == "darwin" or os.lower() == "windows":
 
 		# Operating system
 		sysExp = os.lower()

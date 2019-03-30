@@ -110,7 +110,9 @@ def getComputers():
 
 	c = conn.cursor()
 
-	c.execute("SELECT distinct mac, sysExp, coreCounter, treadsCounter, cpuModel, hostName from historique order by receivedDate DESC;")
+	c.execute("""SELECT distinct mac, sysExp, coreCounter, treadsCounter, cpuModel, hostName
+				 from historique
+				 order by receivedDate DESC;""")
 
 	result = c.fetchall()
 
