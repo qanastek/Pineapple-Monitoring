@@ -59,7 +59,9 @@ def CheckReceivedData(JsonIn):
 		"coreCounter",
 		"treadsCounter",
 		"cpuModel",
-		"hostName"
+		"hostName",
+		"ram",
+		"disk"
 	]
 
 	allowedString = ["mac", "sysExp", "cpuModel", "hostName"]

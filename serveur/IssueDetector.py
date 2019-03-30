@@ -48,7 +48,9 @@ def GetInfo(JsonIn):
 		"coreCounter" : JsonIn['coreCounter'],
 		"treadsCounter" : JsonIn['treadsCounter'],
 		"cpuModel" : JsonIn['cpuModel'],
-		"hostName" : JsonIn['hostName']
+		"hostName" : JsonIn['hostName'],
+		"ram" : JsonIn['ram'],
+		"disk" : JsonIn['disk']
 	}
 
 	return jsonOut

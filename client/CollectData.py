@@ -74,6 +74,8 @@ def CollectData():
 
 		diskUsage = psutil.disk_usage('/').percent
 
+		disk = psutil.disk_usage('/').total
+
 		memoryUsage = psutil.virtual_memory().percent
 
 		ram = psutil.virtual_memory().total
@@ -106,7 +108,8 @@ def CollectData():
 			"treadsCounter" : int(treadsCounter),
 			"cpuModel" : str(cpuModel),
 			"hostName" : str(hostName),
-			"ram" : int(ram)
+			"ram" : int(ram),
+			"disk" : int(disk)
 		}
 		, indent=4, sort_keys=True)
 
@@ -134,6 +137,8 @@ def CollectData():
 		treadsCounter = subprocess.check_output(['bash','-c', bashCommand])
 
 		diskUsage = psutil.disk_usage('/').percent
+
+		disk = psutil.disk_usage('/').total
 
 		memoryUsage = psutil.virtual_memory().percent
 
@@ -168,7 +173,8 @@ def CollectData():
 			"treadsCounter" : int(treadsCounter),
 			"cpuModel" : str(cpuModel),
 			"hostName" : str(hostName),
-			"ram" : int(ram)
+			"ram" : int(ram),
+			"disk" : int(disk)
 		}
 		, indent=4, sort_keys=True)
 

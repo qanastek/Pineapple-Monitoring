@@ -16,11 +16,11 @@ def dropTable():
 
 def addColumn():
 
-	conn = sqlite3.connect('history.db')
+	conn = sqlite3.connect('alerts.db')
 
 	c = conn.cursor()
 
-	c.execute("""ALTER TABLE historique ADD COLUMN hostName text""")
+	c.execute("""ALTER TABLE alerts ADD COLUMN disk int""")
 
 	conn.commit()
 
@@ -42,7 +42,9 @@ def createTableAlerts():
 		currentConnectedUsers int,
 		processCounter int,
 		sysExp text,
-		coreCounter int
+		coreCounter int,
+		ram int,
+		disk int
 	)""")
 
 	conn.commit()
@@ -65,7 +67,9 @@ def createTable():
 		currentConnectedUsers int,
 		processCounter int,
 		sysExp text,
-		coreCounter int
+		coreCounter int,
+		ram int,
+		disk int
 	)""")
 
 	conn.commit()
@@ -110,7 +114,15 @@ def getComputers():
 
 	c = conn.cursor()
 
-	c.execute("""SELECT distinct mac, sysExp, coreCounter, treadsCounter, cpuModel, hostName
+	c.execute("""SELECT DISTINCT
+					mac,
+					sysExp,
+					coreCounter,
+					treadsCounter,
+					cpuModel,
+					hostName,
+					ram,
+					disk
 				 from historique
 				 order by receivedDate DESC;""")
 
@@ -169,7 +181,9 @@ def SaveData(JsonIn):
 		:coreCounter,
 		:treadsCounter,
 		:cpuModel,
-		:hostName)""", {
+		:hostName,
+		:ram,
+		:disk)""", {
 			'mac' : JsonIn['mac'],
 			'receivedDate' : datetime.datetime.now(),
 			'currentCpuLoad' : JsonIn['currentCpuLoad'],
@@ -182,7 +196,9 @@ def SaveData(JsonIn):
 			'coreCounter' : JsonIn['coreCounter'],
 			'treadsCounter' : JsonIn['treadsCounter'],
 			'cpuModel' : JsonIn['cpuModel'],
-			'hostName' : JsonIn['hostName']
+			'hostName' : JsonIn['hostName'],
+			'ram' : JsonIn['ram'],
+			'disk' : JsonIn['disk']
 		})
 
 	conn.commit()
@@ -208,7 +224,9 @@ def SaveDataAlerts(JsonIn):
 		:coreCounter,
 		:treadsCounter,
 		:cpuModel,
-		:hostName)""", {
+		:hostName,
+		:ram,
+		:disk)""", {
 			'mac' : JsonIn['mac'],
 			'receivedDate' : datetime.datetime.now(),
 			'currentCpuLoad' : JsonIn['currentCpuLoad'],
@@ -221,7 +239,9 @@ def SaveDataAlerts(JsonIn):
 			'coreCounter' : JsonIn['coreCounter'],
 			'treadsCounter' : JsonIn['treadsCounter'],
 			'cpuModel' : JsonIn['cpuModel'],
-			'hostName' : JsonIn['hostName']
+			'hostName' : JsonIn['hostName'],
+			'ram' : JsonIn['ram'],
+			'disk' : JsonIn['disk']
 		})
 
 	conn.commit()

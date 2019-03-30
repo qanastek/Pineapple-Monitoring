@@ -60,18 +60,34 @@
                 {% endif %} 
 
               </td>
-              <td>{{ entries.5 }}</td>
+              
+              <td>
+                {{ entries.5 }}
+              </td>
 
               <td>
                 {{ ToMacAddresse(entries.0) }}
               </td>
-              <td>{{ entries.3 }}</td>
 
-              <td>{{ entries.2 }}</td>
-              <td>{{ entries.4 }}</td>
+              <td>
+                {{ entries.3 }}
+              </td>
 
-              <td>value</td>
-              <td>value</td>
+              <td>
+                {{ entries.2 }}
+              </td>
+
+              <td>
+                {{ entries.4 }}
+              </td>
+
+              <td>
+                {{ entries.6 | int | filesizeformat(True) }}
+              </td>
+
+              <td>
+                {{ entries.7 | int | filesizeformat(True) }}
+              </td>
 
               <td>
                 <button type="button" class="btn btn-outline-primary">More Infos</button>
