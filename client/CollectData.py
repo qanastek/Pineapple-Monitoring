@@ -76,6 +76,8 @@ def CollectData():
 
 		memoryUsage = psutil.virtual_memory().percent
 
+		ram = psutil.virtual_memory().total
+
 		swapUsage = psutil.swap_memory().percent
 
 		usersCounter = len(psutil.users())
@@ -103,7 +105,8 @@ def CollectData():
 			"coreCounter" : int(coreCounter),
 			"treadsCounter" : int(treadsCounter),
 			"cpuModel" : str(cpuModel),
-			"hostName" : str(hostName)
+			"hostName" : str(hostName),
+			"ram" : int(ram)
 		}
 		, indent=4, sort_keys=True)
 
@@ -134,6 +137,8 @@ def CollectData():
 
 		memoryUsage = psutil.virtual_memory().percent
 
+		ram = psutil.virtual_memory().total
+
 		swapUsage = psutil.swap_memory().percent
 
 		bashCommand  = "who | sort --key=1,1 --unique | wc --lines"
@@ -162,7 +167,8 @@ def CollectData():
 			"coreCounter" : int(coreCounter),
 			"treadsCounter" : int(treadsCounter),
 			"cpuModel" : str(cpuModel),
-			"hostName" : str(hostName)
+			"hostName" : str(hostName),
+			"ram" : int(ram)
 		}
 		, indent=4, sort_keys=True)
 
