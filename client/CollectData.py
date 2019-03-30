@@ -112,7 +112,7 @@ def CollectData():
 		return data
 
 	# Linux or Mac
-	if os.lower() == "linux" or os.lower() == "darwin" or os.lower() == "windows":
+	if os.lower() == "linux" or os.lower() == "darwin":
 
 		# Operating system
 		sysExp = os.lower()
