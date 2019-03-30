@@ -33,14 +33,14 @@ Licence 2 Informatique - Groupe 4
     - [x] Module d'affichage
         - [ ] Terminale
         - [ ] Graphique rrdTools
-        - [ ] En ligne
+        - [x] En ligne
     - [x] Critaires de situation de crise configurable (En ligne)
     - [x] Contenue de l'email configurable (En ligne)
     - [x] Envoie d'email par serveur SMTP Gmail    
 - [ ] Communication
     - [x] Module de réception (API avec flask)
     - [x] Module récupération et sauvegarde des informations (Protocole POST)
-    - [ ] Affiche l'historique sous forme de graphique
+    - [x] Affiche l'historique sous forme de graphique
     - [x] Affichage web
 
 ## Topologie :
