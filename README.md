@@ -27,7 +27,7 @@ Licence 2 Informatique - Groupe 4
     - [x] Mettre une nouvelle machine sur le réseau nécéssite aucune modification manuelle
         - [x] Auto dependencies install
         - [x] Auto install + CRON table
-- [ ] Affichage & Alerte
+- [x] Affichage & Alerte
     - [x] Detection de crise
     - [x] Envoie de mail
     - [x] Module d'affichage
