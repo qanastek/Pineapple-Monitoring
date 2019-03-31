@@ -1,6 +1,6 @@
 # :pineapple: Pineapple-Monitoring
 
-Projet d’administration système 2018 - CERI
+Projet d’administration système 2018 - 2019 // CERI
 
 ## Informations auteurs :
 
