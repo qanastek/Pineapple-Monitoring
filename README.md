@@ -37,7 +37,7 @@ Licence 2 Informatique - Groupe 4
     - [x] Critaires de situation de crise configurable (En ligne)
     - [x] Contenue de l'email configurable (En ligne)
     - [x] Envoie d'email par serveur SMTP Gmail    
-- [ ] Communication
+- [x] Communication
     - [x] Module de réception (API avec flask)
     - [x] Module récupération et sauvegarde des informations (Protocole POST)
     - [x] Affiche l'historique sous forme de graphique
