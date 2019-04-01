@@ -167,6 +167,61 @@ def index():
 
 	return render_template('index.html.j2', data=data)
 
+
+@app.route('/infoComputer', methods=['POST'])
+def infoComputer():
+
+	mac = request.form['mac']
+
+	conn = sqlite3.connect('history.db')
+
+	c = conn.cursor()
+
+	requeteSQL1 = "SELECT count(*) from historique where mac = " + mac + ";"
+
+	c.execute(requeteSQL1)
+
+	result = c.fetchone()
+
+	requeteSQL3 = "SELECT currentCpuLoad from historique where mac = " + mac + " order by receivedDate DESC;"
+
+	c.execute(requeteSQL3)
+
+	result3 = c.fetchall()
+
+	conn.commit()
+
+	conn.close()
+
+	# Second request
+	conn1 = sqlite3.connect('alerts.db')
+
+	c1 = conn1.cursor()
+
+	requeteSQL2 = "SELECT count(*) from alerts where mac = " + mac + ";"
+
+	c1.execute(requeteSQL2)
+
+	result1 = c1.fetchone()
+
+	conn1.commit()
+
+	conn1.close()
+
+	values = []
+
+	for x in range( len(result3) ) :
+
+		values.append([float(result3[x][0])])
+
+	data = {
+		"alerts" : int(result1[0]),
+		"countRequest" :int(result[0]),
+		"value" : values
+	}
+
+	return render_template('infoComputer.html.j2', data=data)
+
 @app.route('/vulnerabilites', methods=['GET'])
 def vulnerabilites():
 

@@ -90,7 +90,9 @@
               </td>
 
               <td>
-                <button type="button" class="btn btn-outline-primary">More Infos</button>
+                <form method="POST" action="{{ url_for('infoComputer') }}">
+                  <button type="submit" name="mac" value="{{ entries.0 }}" class="btn btn-outline-primary">More Infos</button>
+                </form>
               </td>
             </tr>
 
