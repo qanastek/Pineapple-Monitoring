@@ -12,5 +12,6 @@ curl -XPOST -H "Content-type: application/json" -d '{
 	"cpuModel" : "I9-7920X 2.9 Ghz",
 	"hostName" : "Big Boy",
 	"ram" : 2048,
-	"disk" : 1024
+	"disk" : 1024,
+	"ram" : 2048
 }' 'http://127.0.0.1:5000/api'
