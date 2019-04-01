@@ -1,6 +1,22 @@
 import sqlite3
-import datetime
 import json
+import datetime
+
+def EraseOld():
+
+	conn = sqlite3.connect('history.db')
+
+	c = conn.cursor()
+
+	c.execute("""DELETE
+			FROM
+			 historique
+			WHERE
+			 receivedDate <= DATE('now', '-7 day');""")
+
+	conn.commit()
+
+	conn.close()
 
 def dropTable():
 

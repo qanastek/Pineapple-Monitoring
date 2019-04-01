@@ -401,6 +401,8 @@ def api():
 
 		SaveData(JsonIn)
 
+		EraseOld()
+
 		return "Data received" + '\n', 200
 
 	else :

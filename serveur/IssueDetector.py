@@ -57,8 +57,7 @@ def GetInfo(JsonIn):
 
 def ErrorsToString(errors, ComputerInfos):
 
-	hostname = socket.gethostname()
-	string = "Computer Hostname : " + hostname + "\nLocal ip address : " + socket.gethostbyname(hostname) + "\nMAC : " + str(ComputerInfos['mac']) + " \n\n"
+	string = "Computer Hostname : " + str(ComputerInfos['hostName']) + "\nMac : " + str(ComputerInfos['mac']) + " \n\n"
 
 	string += "Errors : \n\n"
 

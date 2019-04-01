@@ -1,4 +1,5 @@
 #!/bin/bash 
+sudo su
 apt install python &&
 apt install python-pip &&
 pip install -r requirements.txt &&
