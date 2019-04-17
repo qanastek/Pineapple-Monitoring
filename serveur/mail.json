@@ -1,7 +1,7 @@
 {
     "addresse": "smtp.gmail.com", 
-    "password": "hhfppcclexrcvcxq", 
+    "password": "###", 
     "port": 587, 
-    "senderMail": "qanastek@gmail.com", 
+    "senderMail": "###", 
     "signature": "Send by Pineapple-Monitoring.\r\nMade by Labrak Yanis & Vougeot Valentin"
 }
