@@ -30,35 +30,35 @@ Licence 2 Informatique
 
 ### Download :
 
-'''bash
+```bash
 git clone https://github.com/qanastek/Pineapple-Monitoring.git
-'''
+```
 
 ### Install dependencies :
 
 #### Server side :
-'''bash
+```bash
 cd serveur/
 pip install requirements.txt
-'''
+```
 
 #### Client side :
-'''bash
+```bash
 cd client/
 pip install requirements.txt
-'''
+```
 
 #### Run the server :
-'''bash
+```bash
 cd serveur/
 python server.py
-'''
+```
 
 #### Install the client :
-'''bash
+```bash
 cd client/
 sh AutoInstall.sh
-'''
+```
 
 ## Topologie :
 
