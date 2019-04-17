@@ -1,7 +1,0 @@
-{
-    "addresse": "smtp.gmail.com", 
-    "password": "###", 
-    "port": 587, 
-    "senderMail": "###", 
-    "signature": "Send by Pineapple-Monitoring.\r\nMade by Labrak Yanis & Vougeot Valentin"
-}
