@@ -12,7 +12,7 @@ Université d'Avignon - CERI
 
 Licence 2 Informatique
 
-#### Technologie used :
+#### Technologies used :
 
 * Python 2.7
     * Flask
