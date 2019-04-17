@@ -6,7 +6,7 @@ This project use a client side collector on each machines to collect data about 
 
 On the server side, you can display all the data collected since the past 14 days on a web GUI thanks to the Flask server, Jinja2 and some JavaScript libraries.
 
-The project is currently under devellopement and isn't currently able to be used on real networks.
+:warning: The project is currently under devellopement and isn't currently able to be used on real networks.
 
 ## Contributors infos :
 
