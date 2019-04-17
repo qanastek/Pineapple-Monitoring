@@ -1,5 +1,7 @@
 # :pineapple: Pineapple-Monitoring
 
+[![forthebadge made-with-python](http://ForTheBadge.com/images/badges/made-with-python.svg)](https://www.python.org/)
+
 Pineapple Monitoring provide monitoring of each machines of an entire network.
 
 This project use a client side collector on each machines to collect data about temperature, ram usage, cpu usage, etc .. and send them to the master server throw the HTTP protocol.
