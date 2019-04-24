@@ -27,6 +27,7 @@ Licence 2 Informatique
 * Python 2.7
     * Flask
     * Jinja2
+    * LXML
 * SQLlite 3
 * Bash
 * Web languages
