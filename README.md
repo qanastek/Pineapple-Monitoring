@@ -73,7 +73,7 @@ sh AutoInstall.sh
 
 ## Pictures
 
-![Main page](/github/example.png)
+![Main page](github/example.PNG)
 
 ## Topologie :
 
