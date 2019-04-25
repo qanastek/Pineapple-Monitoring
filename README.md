@@ -1,5 +1,15 @@
 # :pineapple: Pineapple-Monitoring
 
+[![forthebadge made-with-python](http://ForTheBadge.com/images/badges/made-with-python.svg)](https://www.python.org/)
+
+Pineapple Monitoring provide monitoring of each machines of an entire network.
+
+This project use a client side collector on each machines to collect data about temperature, ram usage, cpu usage, etc .. and send them to the master server throw the HTTP protocol.
+
+On the server side, you can display all the data collected since the past 14 days on a web GUI thanks to the Flask server, Jinja2 and some JavaScript libraries.
+
+:warning: The project is currently under devellopement and isn't currently able to be used on real networks.
+
 ## Contributors infos :
 
 #### Contributeurs :
@@ -12,11 +22,12 @@ Université d'Avignon - CERI
 
 Licence 2 Informatique
 
-#### Technologie used :
+#### Technologies used :
 
 * Python 2.7
     * Flask
     * Jinja2
+    * LXML
 * SQLlite 3
 * Bash
 * Web languages
