@@ -71,6 +71,10 @@ cd client/
 sh AutoInstall.sh
 ```
 
+## Pictures
+
+![Main page](/github/example.png)
+
 ## Topologie :
 
 ![Diagramme](./mermaid-diagram.svg)
