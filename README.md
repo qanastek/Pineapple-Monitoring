@@ -75,6 +75,6 @@ sh AutoInstall.sh
 
 ![Main page](github/example.PNG)
 
-## Topologie :
+## Topology :
 
 ![Diagramme](./mermaid-diagram.svg)
