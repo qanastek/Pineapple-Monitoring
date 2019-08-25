@@ -4,7 +4,7 @@
 
 Pineapple Monitoring provide monitoring of each machines of an entire network.
 
-This project use a client side collector on each machines to collect data about temperature, ram usage, cpu usage, etc .. and send them to the master server throw the HTTP protocol.
+This project use a client side collector on each machines to collect data about temperature, ram usage, cpu usage, etc .. and throw them to the Flask API via the HTTP protocol.
 
 On the server side, you can display all the data collected since the past 14 days on a web GUI thanks to the Flask server, Jinja2 and some JavaScript libraries.
 
