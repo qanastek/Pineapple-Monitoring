@@ -10,6 +10,8 @@ On the server side, you can display all the data collected since the past 14 day
 
 :warning: The project is currently under devellopement and isn't currently able to be used on real networks.
 
+![Main page](github/example.PNG)
+
 ## Contributors infos :
 
 #### Contributeurs :
@@ -70,10 +72,6 @@ python server.py
 cd client/
 sh AutoInstall.sh
 ```
-
-## Pictures
-
-![Main page](github/example.PNG)
 
 ## Topology :
 
